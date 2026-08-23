@@ -13,12 +13,14 @@ class DB_Helper:
             url: str,
             echo: bool,
             echo_pool: bool,
+            pool_size: int,
             max_overflow: int = 10
     ):
         self.engine: AsyncEngine = create_async_engine(
             url=url,
             echo=echo,
             echo_pool=echo_pool,
+            pool_size=pool_size,
             max_overflow=max_overflow
         )
         self.session_factory: async_sessionmaker[AsyncSession] = async_sessionmaker(
