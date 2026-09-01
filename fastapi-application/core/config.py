@@ -17,6 +17,10 @@ class APIPrefix(BaseModel):
     v1: APIV1Prefix = APIV1Prefix()
 
 
+class AccessToken(BaseModel):
+    lifetime: int = 3600
+
+
 class DataBaseConfig(BaseModel):
     url: PostgresDsn
     echo: bool = False
@@ -43,6 +47,7 @@ class Settings(BaseSettings):
     run: RunConfig = RunConfig()
     api: APIPrefix = APIPrefix()
     db: DataBaseConfig
+    access_token: AccessToken = AccessToken()
 
 
 settings = Settings()

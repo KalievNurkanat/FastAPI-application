@@ -1,4 +1,3 @@
-from core.config import settings
 from fastapi import APIRouter
 
 from api.api_v1 import router as user_v1_router
