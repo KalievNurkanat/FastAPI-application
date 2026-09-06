@@ -26,6 +26,7 @@ class AuthJWT(BaseModel):
     jwt_public_key_path: Path = BASE_DIR / "certs" / "jwt-public.pem"
     algorithm: str = "RS256"
     access_token_lifetime: int = 3
+    refresh_token_lifetime: int = 35
 
 
 class DataBaseConfig(BaseModel):

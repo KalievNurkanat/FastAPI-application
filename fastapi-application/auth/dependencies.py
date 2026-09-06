@@ -1,6 +1,5 @@
 from typing import Annotated
 
-from api.api_v1.users.schemas import ReadUser
 from core.models import User, db_helper
 from fastapi import Depends, Form, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
@@ -9,6 +8,9 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from auth import utils as auth_utils
+from auth.helpers import ACCESS_TOKEN_TYPE, REFRESH_TOKEN_TYPE
+from auth.schemas import UserSchema
+from auth.validations import check_auth_user, validate_token_type
 
 http_bearer = HTTPBearer()
 
@@ -39,7 +41,7 @@ async def validate_auth_user(
 
 def get_current_token_payload(
     credentials: Annotated[HTTPAuthorizationCredentials, Depends(http_bearer)]
-) -> ReadUser:
+):
     token = credentials.credentials
     try:
         payload = auth_utils.decode_jwt(
@@ -57,20 +59,20 @@ async def get_current_auth_user(
     session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
     payload: Annotated[str, Depends(get_current_token_payload)]
 ):
-    username: str | None = payload.get("sub") 
-    stmt = select(User).where(User.username==username)
-    user = await session.scalar(stmt)
-    if user:
-        return user
-    
-    raise HTTPException(
-            status_code=401,
-            detail="Token invalid"
-        )  
+    validate_token_type(payload, ACCESS_TOKEN_TYPE)
+    return await check_auth_user(session, payload)
+
+
+async def get_current_auth_user_refresh(
+    session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
+    payload: Annotated[str, Depends(get_current_token_payload)]
+):
+    validate_token_type(payload, REFRESH_TOKEN_TYPE)
+    return await check_auth_user(session, payload)
     
 
 def get_active_current_auth_user(
-    user: Annotated[ReadUser, Depends(get_current_auth_user)]
+    user: Annotated[UserSchema, Depends(get_current_auth_user)]
 ):
     if user.is_active:
         return user
