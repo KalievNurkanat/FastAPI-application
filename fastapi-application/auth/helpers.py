@@ -2,7 +2,7 @@ from datetime import timedelta
 
 from core.config import settings
 
-from auth import utils as auth_utils
+from auth import auth_utils
 from auth.schemas import UserSchema
 
 ACCESS_TOKEN_TYPE = "access"

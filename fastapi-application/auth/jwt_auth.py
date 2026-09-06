@@ -36,7 +36,7 @@ def auth_issue_jwt(
         "/access-token-issue",
         response_model=TokenInfo,
         response_model_exclude_none=True
-        )
+    )
 async def auth_access_issue_jwt(
     user: Annotated[UserSchema, Depends(get_current_auth_user_refresh)]
 ):

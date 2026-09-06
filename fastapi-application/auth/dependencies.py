@@ -7,7 +7,7 @@ from jwt import InvalidTokenError
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from auth import utils as auth_utils
+from auth import auth_utils
 from auth.helpers import ACCESS_TOKEN_TYPE, REFRESH_TOKEN_TYPE
 from auth.schemas import UserSchema
 from auth.validations import check_auth_user, validate_token_type
