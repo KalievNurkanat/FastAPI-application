@@ -45,6 +45,25 @@ class DataBaseConfig(BaseModel):
     }
 
 
+class RedisDB(BaseModel):
+    cache: int = 0
+
+
+class RedisConfig(BaseModel):
+    host: str = "localhost"
+    port: int = 6379
+    db: RedisDB = RedisDB()
+
+
+class CacheNameSpaces(BaseModel):
+    users_list: str = "users-list"
+
+
+class CacheConfig(BaseModel):
+    prefix: str = "fastapi-cache"
+    namespace: CacheNameSpaces = CacheNameSpaces()
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -56,6 +75,8 @@ class Settings(BaseSettings):
     api: APIPrefix = APIPrefix()
     db: DataBaseConfig
     auth_jwt: AuthJWT = AuthJWT()
+    redis: RedisConfig = RedisConfig()
+    cache: CacheConfig = CacheConfig()
 
 
 settings = Settings()

@@ -11,5 +11,8 @@ class CreateUser(BaseModel):
     
 
 
-class ReadUser(CreateUser):
-    pass
+class ReadUser(BaseModel):
+    id: int
+    username: str
+    email: EmailStr | None = None
+    is_active: bool = True
