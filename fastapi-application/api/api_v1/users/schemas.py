@@ -10,7 +10,6 @@ class CreateUser(BaseModel):
     is_active: bool = True
     
 
-
 class ReadUser(BaseModel):
     id: int
     username: str
