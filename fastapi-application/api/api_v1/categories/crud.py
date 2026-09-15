@@ -11,17 +11,15 @@ from api.api_v1.categories.schemas import (
 )
 from api.api_v1.categories.schemas import (
     CreateCategory,
-    ReadCategory,
     UpdateCategory,
 )
 
 
 async def get_categories(
         session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
-        categories: ReadCategory
-) -> list[ReadCategory]:
+) -> list[sch_category]:
     stmt = select(Category).order_by(Category.id)
-    result: Result = session.execute(stmt)
+    result: Result = await session.execute(stmt)
     categories = result.scalars().all()
     return categories
 
@@ -31,7 +29,7 @@ async def create_category(
         category: CreateCategory
 ) -> CreateCategory:
     category_in = Category(**category.model_dump())
-    session.add(category)
+    session.add(category_in)
     await session.commit()
     await session.refresh(category_in)
 

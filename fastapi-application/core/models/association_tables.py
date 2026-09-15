@@ -34,11 +34,11 @@ class OrderProduct(Base):
     )
     order: Mapped["Order"] = relationship(
         back_populates="product_details",
-        overlaps="order, product"
+        overlaps="orders, products"
     )
     product: Mapped["Product"] = relationship(
         back_populates="order_details",
-        overlaps="order, product"
+        overlaps="orders, products"
     )
 
 

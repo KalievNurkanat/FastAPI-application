@@ -9,5 +9,5 @@ router = APIRouter(
 
 router.include_router(
     category_router,
-    prefix="category"
+    prefix="/category"
 )

@@ -11,7 +11,7 @@ class BaseCategory(BaseModel):
     )
 
 
-class Category(BaseModel):
+class Category(BaseCategory):
     id: int
 
 
