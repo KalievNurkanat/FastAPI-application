@@ -1,17 +1,22 @@
+from datetime import datetime
+
 from pydantic import BaseModel, ConfigDict, Field
 
 
 class BaseProduct(BaseModel):
-    title: str = Field(
-        ge=1,
-        le=35
+    model_config = ConfigDict(
+        strict=True,
     )
-    price: int = Field(
+
+    title: str = Field(
+        max_length=55
+    )
+    price: float = Field(
         gt=0,
     )
     description: str = Field(
-        gt=0,
-        le=250
+        max_length=250
     )
     category_id: int
-    register_date: 
+    register_date: datetime
+

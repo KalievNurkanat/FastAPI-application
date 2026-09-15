@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from core.models.association_tables import OrderProduct
     from core.models.products import Product
 
+
 class Order(Base):
     created_at: Mapped[datetime] = mapped_column(
         server_default=func.now(),

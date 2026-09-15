@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from sqlalchemy import CheckConstraint, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from core.models import Base
+from core.models.base import Base
 
 if TYPE_CHECKING:
     from core.models.orders import Order
@@ -29,7 +29,7 @@ class OrderProduct(Base):
         ForeignKey("products.id")
     )
     count: Mapped[int] = mapped_column(
-        server_default=1,
+        server_default="1",
         default=1
     )
     order: Mapped["Order"] = relationship(
