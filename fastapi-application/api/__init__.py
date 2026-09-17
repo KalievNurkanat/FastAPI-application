@@ -1,9 +1,7 @@
 from fastapi import APIRouter
 
-from api.api_v1 import router as category_router
-from api.api_v1 import router as user_v1_router
+from api.api_v1 import router as v1_routers
 
 router = APIRouter()
 
-router.include_router(router=category_router)
-router.include_router(router=user_v1_router)
+router.include_router(router=v1_routers)

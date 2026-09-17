@@ -18,5 +18,20 @@ class BaseProduct(BaseModel):
         max_length=250
     )
     category_id: int
-    register_date: datetime
+
+
+class Product(BaseProduct):
+    id: int
+
+
+class ReadProduct(BaseProduct):
+    pass
+
+
+class CreateProduct(BaseProduct):
+    pass
+
+
+class UpdateProduct(BaseProduct):
+    pass
 

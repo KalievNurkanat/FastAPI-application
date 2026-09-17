@@ -11,7 +11,6 @@ from api.api_v1.categories.schemas import (
 )
 from api.api_v1.categories.schemas import (
     CreateCategory,
-    ReadCategory,
     UpdateCategory,
 )
 

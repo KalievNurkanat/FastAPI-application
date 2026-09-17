@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from typing import TYPE_CHECKING
 
-from sqlalchemy import CheckConstraint, ForeignKey, String, func
+from sqlalchemy import CheckConstraint, DateTime, ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from core.models import Base
@@ -24,6 +24,7 @@ class Product(Base):
         ForeignKey("categories.id")
     )
     register_date: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
         server_default=func.now(),
         default=datetime.now(timezone.utc)
     )
