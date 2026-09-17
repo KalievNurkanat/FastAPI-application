@@ -17,7 +17,7 @@ class OrderProduct(Base):
         "order_id", "product_id"
     ),
         CheckConstraint(
-            "count <= 20",
+            "count <= 20 AND count > 0",
             name="count"
         )
     )
