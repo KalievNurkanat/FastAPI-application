@@ -59,8 +59,6 @@ async def create_order(
 
     return result
     
-    
-
 
 async def put_order(
         session: Annotated[AsyncSession, Depends(db_helper.session_getter)],
