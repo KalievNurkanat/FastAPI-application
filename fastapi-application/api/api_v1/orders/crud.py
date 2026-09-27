@@ -3,8 +3,7 @@ from typing import Annotated
 from core.models.association_tables import OrderProduct
 from core.models.db_helper import db_helper
 from core.models.orders import Order
-from core.models.products import Product
-from fastapi import Depends, HTTPException
+from fastapi import Depends
 from sqlalchemy import Result, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload

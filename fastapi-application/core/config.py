@@ -39,7 +39,7 @@ class LoggingConfig(BaseModel):
 
     @property
     def log_level_value(self) -> int:
-        return logging.getLevelNamesMapping()[self.log_level_value.upper()]
+        return logging.getLevelNamesMapping()[self.log_levels.upper()]
 
 
 class AuthJWT(BaseModel):
