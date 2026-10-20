@@ -3,6 +3,7 @@ from api import router as api_router
 from auth import router as auth_router
 from core.config import settings
 from create_fastapi_app import create_app
+from service import router as service_router
 
 main_app = create_app()
 
@@ -17,6 +18,11 @@ main_app.include_router(
 
 main_app.include_router(
     auth_router,
+    prefix=settings.api.prefix
+)
+
+main_app.include_router(
+    service_router,
     prefix=settings.api.prefix
 )
 
