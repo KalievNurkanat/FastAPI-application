@@ -7,9 +7,6 @@ from service import router as service_router
 
 main_app = create_app()
 
-main_app.include_router(
-    api_router,
-)
 
 main_app.include_router(
     api_router,
@@ -28,7 +25,7 @@ main_app.include_router(
 
 if __name__ == "__main__":
     uvicorn.run(
-        "main:app",
+        "main:main_app",
         host=settings.run.host,
         port=settings.run.port,
         reload=True

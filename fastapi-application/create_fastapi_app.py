@@ -3,7 +3,9 @@ from contextlib import asynccontextmanager
 
 from core.config import settings
 from core.models import db_helper
+from error_handlers import register_error_handlers
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 from middlewares.middlewares import register_middlewares
@@ -29,7 +31,9 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 def create_app() -> FastAPI:
     app = FastAPI(
         lifespan=lifespan,
+        default_response_class=JSONResponse
     )
+    register_error_handlers(app)
     register_middlewares(app)
 
     return app

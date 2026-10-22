@@ -16,3 +16,4 @@ def get_request_counts():
         }
         for path, stats in request_count_middleware_dispatch.counts.items()
     }
+
