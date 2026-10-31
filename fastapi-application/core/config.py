@@ -85,6 +85,10 @@ class CacheConfig(BaseModel):
     namespace: CacheNameSpaces = CacheNameSpaces()
 
 
+class GeminiAPIKey(BaseModel):
+    api_key: str = "APP_CONFIG__GEMINI__API_KEY"
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -92,6 +96,7 @@ class Settings(BaseSettings):
         env_nested_delimiter="__",
         env_prefix="APP_CONFIG__"
     )
+    gemini: GeminiAPIKey
     run: RunConfig = RunConfig()
     api: APIPrefix = APIPrefix()
     db: DataBaseConfig
