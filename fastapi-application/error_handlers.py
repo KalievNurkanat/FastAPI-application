@@ -3,7 +3,7 @@ import logging
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
-from pydantic import ValidationError
+from google.genai.errors import ServerError
 from sqlalchemy.exc import DatabaseError
 
 log = logging.getLogger(__name__)
@@ -39,6 +39,22 @@ def register_error_handlers(
             content={
                 "message": "An unexpected error occured. "
                 "Our admins already working on it"
+            },
+        )
+
+    @app.exception_handler(ServerError)
+    def server_error_handler(
+        request: Request,
+        exc: ServerError
+    ) -> JSONResponse:
+        log.error(
+            "Server issues occured",
+            exc_info=exc
+        )
+        return JSONResponse(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            content={
+                "message": "The problems with service occured. Please try again or later"
             },
         )
         

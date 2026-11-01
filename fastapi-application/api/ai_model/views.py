@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from ai_model import gemini_part
-from ai_model.pydantic import AIRequest, AIResponse
+from api.ai_model import gemini_part
+from api.ai_model.pydantic import AIRequest, AIResponse
 
 router = APIRouter(
     tags=["AI"]

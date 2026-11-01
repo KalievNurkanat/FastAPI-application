@@ -1,5 +1,4 @@
 import uvicorn
-from ai_model import router as ai_router
 from api import router as api_router
 from auth import router as auth_router
 from core.config import settings
@@ -16,11 +15,6 @@ main_app.include_router(
 
 main_app.include_router(
     auth_router,
-    prefix=settings.api.prefix
-)
-
-main_app.include_router(
-    ai_router,
     prefix=settings.api.prefix
 )
 
