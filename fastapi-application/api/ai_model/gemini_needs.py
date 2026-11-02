@@ -28,3 +28,5 @@ async def fetch_products(
 async def get_product() -> list[dict]:
     async with db_helper.session_factory() as session:
         return await fetch_products(session)
+
+

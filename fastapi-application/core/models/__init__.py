@@ -1,6 +1,7 @@
 __all__ = (
     "Base",
     "Category",
+    "Message",
     "Order",
     "OrderProduct",
     "Product",
@@ -12,6 +13,7 @@ from .association_tables import OrderProduct
 from .base import Base
 from .categories import Category
 from .db_helper import db_helper
+from .messages import Message
 from .orders import Order
 from .products import Product
 from .users import User
