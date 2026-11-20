@@ -6,15 +6,14 @@ from google import genai
 from google.genai import types
 
 from api.ai_model.chat_needs import create_message, get_messages
-from api.ai_model.gemini_needs import get_product
 from api.ai_model.pydantic import AIChatResponse, UserRequest
+from api.ai_model.tool_calling import get_product
 
 client = genai.Client(api_key=settings.gemini.api_key)
 
 async def gemini_chat(
     request: UserRequest,
-    user: User = Depends(get_active_current_auth_user),
-    # session: AsyncSession = Depends(db_helper.session_getter),
+    user: User,
 ) -> AIChatResponse:
     history_db = await get_messages(user=user)
     history = [

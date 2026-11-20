@@ -1,8 +1,6 @@
-from auth.dependencies import get_active_current_auth_user
 from core.models.db_helper import db_helper
 from core.models.messages import Message
 from core.models.users import User
-from fastapi import Depends
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
