@@ -9,8 +9,8 @@ from auth.helpers import TOKEN_TYPE_FIELD
 
 
 def validate_token_type(
-        payload: dict,
-        type: str
+    payload: dict,
+    type: str
 ):
     token_type = payload.get(TOKEN_TYPE_FIELD)
     if token_type != type:

@@ -51,6 +51,7 @@ def auth_user_info(
     user: Annotated[UserSchema, Depends(get_active_current_auth_user)]
 ):
     return {
+        "user_id": user.id,
         "User": user.username,
         "Email": user.email
     }

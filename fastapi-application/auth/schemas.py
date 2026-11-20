@@ -2,8 +2,7 @@ from pydantic import BaseModel, ConfigDict, EmailStr
 
 
 class UserSchema(BaseModel):
-    model_config = ConfigDict(strict=True)
-
+    id: int
     username: str
     email: EmailStr | None = None
     password: str

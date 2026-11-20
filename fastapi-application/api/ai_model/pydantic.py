@@ -12,8 +12,8 @@ class AIResponse(BaseModel):
     response: str
 
 
-class User(BaseModel):
-    you: str = Field(
+class UserRequest(BaseModel):
+    prompt: str = Field(
         max_length=200,
         min_length=2
     )
